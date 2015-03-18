@@ -1,0 +1,36 @@
+{% extends '@BlueDayTemplate/Layout/_layout.html.twig' %}
+
+
+{% form_theme form '@BlueDayTemplate/fields.html.twig' %}
+
+
+{% block content %}{% endblock content %}
+
+{% block prefooter %}
+    <div class="form">
+        {{ form_start(form) }}
+        <div class="grid">
+            <legend><i class="icon-user"></i> {{ "template.store_template_bundle.user.password.register"|trans }}</legend>
+            <div class="col-1-2">
+                {{ form_row(form.firstname) }}
+            </div>
+            <div class="col-1-2">
+                {{ form_row(form.lastName) }}
+            </div>
+            <div class="col-1-1">
+                {{ form_row(form.email) }}
+            </div>
+            <div class="col-1-2">
+                {{ form_row(form.password.first) }}
+            </div>
+            <div class="col-1-2">
+                {{ form_row(form.password.second) }}
+            </div>
+            <p class="buttons">
+                {{ form_row( form.send , { 'attr': {'class': 'button button-secondary' } } ) }}
+            </p>
+
+            {{ form_end(form) }}
+        </div>
+    </div>
+{% endblock prefooter %}

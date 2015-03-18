@@ -1,0 +1,49 @@
+{% extends '::_base.html.twig' %}
+
+{% block head_style %}
+    <link rel="stylesheet" type="text/css" media="all" href="{{ asset('bundles/BlueDayTemplate/css/main.css') }}" />
+    <script type="text/javascript">
+        var oGlobalSettings = {
+            sPathJs: "{{ asset('bundles/BlueDayTemplate/js/') }}",
+            sPathJsModules: "{{ asset('bundles/BlueDayTemplate/js/modules/') }}",
+            sPathJsTwig: "{{ asset('bundles/BlueDayTemplate/twig/') }}",
+            sPathJsComponents: "{{ asset('bundles/BlueDayTemplate/js/') }}",
+            sPathJsCore: "{{ asset('bundles/BlueDayTemplate/js/') }}",
+            sPathJsLibs: "{{ asset('bundles/BlueDayTemplate/js/libs/') }}",
+            sPathCss: "{{ asset('bundles/BlueDayTemplate/css/') }}",
+            bCss: false,
+            bTrackModules: true,
+            sHash:  '100',
+            sDevice: 'desktop'
+        }
+    </script>
+    <script type="text/javascript" src="{{ asset('bundles/BlueDayTemplate/js/core.js') }}" ></script>
+{% endblock head_style %}
+
+{% block body %}
+    {% block header %}
+
+        {% include '@BlueDayTemplate/Modules/_header.html.twig' %}
+
+    {% endblock header %}
+
+    {% block container %}
+
+        {% block messages %}
+            {% include "@BlueDayTemplate/Modules/_message-list.html.twig" %}
+        {% endblock messages %}
+
+        <div class="grid">
+            <div class="col-1-1">
+                {% block content %}{% endblock content %}
+            </div>
+        </div>
+        {% block prefooter %}{% endblock prefooter %}
+        {%  block footer %}
+
+        {% include '@BlueDayTemplate/Modules/_footer.html.twig' %}
+
+        {%  endblock footer %}
+
+    {% endblock container %}
+{% endblock body %}

@@ -1,0 +1,49 @@
+{% extends '@BlueDayTemplate/Layout/_checkout.html.twig' %}
+
+
+{% block content_checkout %}
+
+    {% if addresses is not empty %}
+    <h1 class="checkout-title">{{ "template.store_template_bundle.checkout.address.select_address"|trans }}</h1>
+    <form method="post" action="{{ url('store_checkout_address_save') }}" {% if addresses|length > 1 %}class="address-list" {% endif %}>
+        <p class="checkout-actions checkout-actions-top">
+            <button type="submit" name="payment" class="button button-secondary desktop"> {{ 'template.store_template_bundle.checkout.address.payment'|trans }} <i class="icon-arrow-right"></i></button>
+            <a class="button desktop" href="{{ url('store_cart_view') }}"> <i class="icon-arrow-left"></i> {{ 'template.store_template_bundle.checkout.back'|trans }}</a>
+            {% include "@BlueDayTemplate/Modules/_checkout-progress.html.twig" with {"step": "2"} %}
+        </p>
+            {% for address in addresses %}
+
+                {% include "@BlueDayTemplate/Modules/_address-item.html.twig" with {"address": address, "source": "checkout"} %}
+
+            {% endfor %}
+
+        <p class="checkout-actions checkout-actions-bottom">
+            <button type="submit" name="payment" class="button button-secondary"> {{ 'template.store_template_bundle.checkout.address.payment'|trans }} <i class="icon-arrow-right"></i></button>
+            <a class="button" href="{{ url('store_cart_view') }}"> <i class="icon-arrow-left"></i> {{ 'template.store_template_bundle.checkout.back'|trans }}</a>
+        </p>
+
+    </form>
+    {% else %}
+        <h1 class="checkout-title">{{ "template.store_template_bundle.checkout.address.add_new_address"|trans }}</h1>
+        <p class="checkout-actions checkout-actions-top">
+            <a class="button desktop" href="{{ url('store_cart_view') }}"> <i class="icon-arrow-left"></i> {{ 'template.store_template_bundle.checkout.back'|trans }}</a>
+            {% include "@BlueDayTemplate/Modules/_checkout-progress.html.twig" with {"step": "2"} %}
+        </p>
+    {% endif %}
+    {% if addresses is not empty %}
+        <h1 class="checkout-title">{{ "template.store_template_bundle.checkout.address.add_new_address"|trans }}</h1>
+    {% endif %}
+
+        {###########################################################################
+    #   IMPORTANT This JS is used on the location-selector to make the city    #
+    #   selectors work. If you remove this you should implement the same       #
+    #   functionality by yourself                                              #
+    ###########################################################################}
+        {% javascripts '@StoreGeoBundle/Resources/public/js/LocationSelectors.js' %}
+        <script src="{{ asset_url }}"></script>
+        {% endjavascripts %}
+
+        {% include '@BlueDayTemplate/Modules/_address-new.html.twig' with {'form' : form} %}
+
+
+{% endblock content_checkout %}

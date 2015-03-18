@@ -1,0 +1,9 @@
+{% extends '@BlueDayTemplate/Layout/_layout.html.twig' %}
+
+
+{% block title %}{{ "template.store_template_bundle.category.view.category"|trans }}{{ category.name }}{% endblock title %}
+
+
+{% block content %}
+	{% include '@BlueDayTemplate/Modules/_product-list.html.twig' with {'products' : products} %}
+{% endblock content %}

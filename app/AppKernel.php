@@ -147,6 +147,7 @@ class AppKernel extends Kernel
              * Elcodi Templates
              */
             new \Elcodi\Template\StoreTemplateBundle\StoreTemplateBundle(),
+            new \Elcodi\Template\BlueDayTemplateBundle\BlueDayTemplateBundle(),
 
             /**
              * Elcodi Plugins

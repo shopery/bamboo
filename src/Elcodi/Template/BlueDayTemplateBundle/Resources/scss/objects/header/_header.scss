@@ -1,0 +1,55 @@
+.header {
+	& {
+		text-align: center;
+		background: $color-primary;
+		box-shadow: 0 0 2px rgba($color-foreground, .1);
+	}
+	.grid {
+		overflow: visible;
+	}
+	a {
+		color: $color-background;
+	}
+	.logo {
+		& {
+			font-family: $font-face-title;
+			@include rem-fallback(font-size, $font-size-xxl*$font-title-exponential, true);
+			display: inline-block;
+			padding: $spacing/2 $spacing/2 0;
+			color: $color-background;
+			text-shadow: 1px 1px $color-foreground;
+		}
+		&:hover {
+			text-decoration: none;
+		}
+	}
+	img {
+		float: left;
+	}
+}
+
+
+@mixin header-desktop {
+	.header {
+		& {
+			text-align: left;
+		}
+		.col-1-2 {
+			position: relative;
+			min-height: 82px;
+		}
+		.user-nav {
+			position: absolute;
+			top: 0;
+			right: 0;
+			background: rgba($color-foreground, .2);
+			padding: $spacing/4 $spacing 0;
+		}
+		.cart-nav {
+			position: absolute;
+			min-width: 300px;
+			bottom: -1.6em;
+			right: 0;
+		}
+	}
+}
