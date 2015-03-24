@@ -3,11 +3,11 @@
 {% block content %}
     {% if thanks %}
         <div class="message message-ok">
-            <p><i class="icon-check"></i> <strong>{{ 'template.store_template_bundle.order.view.congratulations'|trans }}</strong></p>
-            <p>{{ 'template.store_template_bundle.order.view.thanks'|trans }}</p>
+            <p><i class="icon-check"></i> <strong>{{ 'template.BlueDay_bundle.order.view.congratulations'|trans }}</strong></p>
+            <p>{{ 'template.BlueDay_bundle.order.view.thanks'|trans }}</p>
         </div>
     {% else %}
-        <h1>{{ 'template.store_template_bundle.order.view.order'|trans }} #{{ order.id }}</h1>
+        <h1>{{ 'template.BlueDay_bundle.order.view.order'|trans }} #{{ order.id }}</h1>
     {% endif %}
     <div class="cart-list">
         {% for line in order.orderLines %}
@@ -19,10 +19,10 @@
             {% include "@BlueDayTemplate/Modules/_order-coupon-item.html.twig" with {"orderCoupon": orderCoupon} %}
         {% endfor %}
     </div>
-    <p class="cart-total"><span>{{ 'template.store_template_bundle.order.view.shipping'|trans }}</span> {{ order.shippingAmount|print_convert_money() }}</p>
-    <p class="cart-total"><span>{{ 'template.store_template_bundle.order.view.total'|trans }} </span>{{ order.amount|print_convert_money() }}</p>
+    <p class="cart-total"><span>{{ 'template.BlueDay_bundle.order.view.shipping'|trans }}</span> {{ order.shippingAmount|print_convert_money() }}</p>
+    <p class="cart-total"><span>{{ 'template.BlueDay_bundle.order.view.total'|trans }} </span>{{ order.amount|print_convert_money() }}</p>
     <div class="cart-actions">
-        <a class="button button-empty cart-actions-continue" href="{{ url('store_homepage') }}"><i class="icon-arrow-left"></i> {{ 'template.store_template_bundle.order.view.continue_shopping'|trans }}</a>
+        <a class="button button-empty cart-actions-continue" href="{{ url('store_homepage') }}"><i class="icon-arrow-left"></i> {{ 'template.BlueDay_bundle.order.view.continue_shopping'|trans }}</a>
     </div>
 
 {% endblock %}

@@ -2,10 +2,10 @@
 
 
 {% block content %}
-    <h2>{{ 'template.store_template_bundle.address.list.addresses'|trans }}</h2>
+    <h2>{{ 'template.BlueDay_bundle.address.list.addresses'|trans }}</h2>
     {% if addresses|length > 0 %}
     <div class="{% if addresses|length > 1 %}address-list{% endif %} address-list-profile">
-        <a href="{{ url('store_address_new') }}" class="button button-secondary address-list-add">{{ 'template.store_template_bundle.address.list.add_new_address'|trans }}</a>
+        <a href="{{ url('store_address_new') }}" class="button button-secondary address-list-add">{{ 'template.BlueDay_bundle.address.list.add_new_address'|trans }}</a>
         {% for address in addresses %}
             {% include "@BlueDayTemplate/Modules/_address-item.html.twig" with {"address": address} %}
         {% endfor %}
@@ -13,8 +13,8 @@
     {% else %}
         <div class="empty-page">
             <i class="icon-map-marker icon-3x"></i>
-            <h2 class="product-title">{{ "template.store_template_bundle.address.list.no_addresses"|trans}}</h2>
-            <a href="{{ url('store_address_new') }}" class="button button-secondary">{{ "template.store_template_bundle.address.list.add_new_address"|trans }}</a>
+            <h2 class="product-title">{{ "template.BlueDay_bundle.address.list.no_addresses"|trans}}</h2>
+            <a href="{{ url('store_address_new') }}" class="button button-secondary">{{ "template.BlueDay_bundle.address.list.add_new_address"|trans }}</a>
         </div>
 
     {% endif %}

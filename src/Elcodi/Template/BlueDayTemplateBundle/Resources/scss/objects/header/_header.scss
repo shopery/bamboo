@@ -1,55 +1,116 @@
+body {
+	padding-top: 82px;
+}
+
 .header {
 	& {
-		text-align: center;
-		background: $color-primary;
-		box-shadow: 0 0 2px rgba($color-foreground, .1);
+		padding: 0;
+		background-repeat: no-repeat;
+		background-position: center center;
+		background-size: cover;
+		margin-bottom: 0;
+		position: relative;
+		z-index: 200;
+		text-align: left;
+		border-bottom: $spacing/2 solid $color-primary;
 	}
-	.grid {
-		overflow: visible;
+	.box-background {
+		padding: 1px;
 	}
-	a {
-		color: $color-background;
+	.navigation {
+		& {
+			position: absolute;
+			bottom: 0;
+			width: 100%;
+		}
+		ul {
+			text-align: center;
+			@extend .grid;
+		}
+	}
+	.cart-nav {
+		& {
+			float: right;
+		}
 	}
 	.logo {
 		& {
-			font-family: $font-face-title;
-			@include rem-fallback(font-size, $font-size-xxl*$font-title-exponential, true);
+			color: $color-primary;
 			display: inline-block;
-			padding: $spacing/2 $spacing/2 0;
-			color: $color-background;
-			text-shadow: 1px 1px $color-foreground;
+			font-weight: bold;
+			padding: $spacing/4 0 0 0;
+			text-transform: uppercase;
+			font-size: $font-size-xxl !important;
 		}
 		&:hover {
 			text-decoration: none;
 		}
 	}
-	img {
-		float: left;
+	.fz-h1 {
+		display: none;
 	}
 }
 
 
 @mixin header-desktop {
+	body {
+		padding-top: 0;
+	}
 	.header {
 		& {
 			text-align: left;
+			padding-bottom: 3.1rem;
+			margin-bottom: $spacing;
+			border-bottom: 0px none;
 		}
-		.col-1-2 {
-			position: relative;
-			min-height: 82px;
+		.buttons-group {
+			& {
+				position: fixed;
+				right: $spacing/2;
+				z-index: 200;
+				padding: 2px;
+				margin-top: -2px;
+				background: $color-background;
+			}
+
 		}
-		.user-nav {
-			position: absolute;
-			top: 0;
-			right: 0;
-			background: rgba($color-foreground, .2);
-			padding: $spacing/4 $spacing 0;
+		.box-background {
+			padding: $spacing/2;
 		}
-		.cart-nav {
-			position: absolute;
-			min-width: 300px;
-			bottom: -1.6em;
-			right: 0;
+		.navigation.desktop {
+			& {
+				background: rgba($color-primary, .8);
+			}
+			ul {
+				text-align: left;
+			}
+		}
+		&.home {
+			& {
+				min-height: 600px;
+			}
+			.fz-h1 {
+				width: 100%;
+				text-align: center;
+				display: block;
+				font-size: 4rem !important;
+				text-shadow: 1px 1px $color-foreground;
+				position: absolute;
+				top: 50%;
+				transform: translateY(-50%);
+				max-width: map-get($grid-custom, container-width);
+			}
+			.navigation.desktop {
+				ul {
+					text-align: center;
+				}
+				a {
+					font-size: $font-size-l;
+				}
+			}
+		}
+		.logo {
+			margin-left: 0;
 		}
 	}
 }

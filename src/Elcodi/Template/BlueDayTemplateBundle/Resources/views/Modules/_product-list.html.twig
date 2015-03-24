@@ -1,15 +1,15 @@
 <div class="product-list">
 {% for product in products %}
 
-    {% if loop.index0 % 3 == 0 %}<div class="row">{% endif %}
-
+    {% if loop.index0 is odd %}<div class="grid">{% endif %}
+        <div class="col-1-2">
         {% include '@BlueDayTemplate/Modules/_product-item.html.twig' with {'product' : product} %}
-
-    {% if loop.index0 % 3 == 2 or loop.last %}</div>{% endif %}
+        </div>
+    {% if loop.index0 is odd or loop.last %}</div>{% endif %}
 {% else %}
     <div class="product-empty">
         <i class="icon-frown-o icon-3x"></i>
-        <h2 class="product-title">{{ "template.store_template_bundle.product.list.no_products_in_category"|trans}}</h2>
+        <h2 class="product-title">{{ "template.BlueDay_bundle.product.list.no_products_in_category"|trans}}</h2>
     </div>
 {% endfor %}
 </div>

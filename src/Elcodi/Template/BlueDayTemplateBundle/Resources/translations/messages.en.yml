@@ -1,5 +1,5 @@
 template:
-    store_template_bundle:
+    BlueDay_bundle:
         address:
             item:
                 billing: Billing
@@ -148,6 +148,7 @@ template:
             list:
                 no_products_in_category: Sorry, we don't have products for this category
             view_item:
+                from: From
                 product: Product
                 offer: Offer
                 add_to_cart: Add to cart

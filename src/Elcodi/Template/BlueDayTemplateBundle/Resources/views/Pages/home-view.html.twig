@@ -1,5 +1,11 @@
 {% extends '@BlueDayTemplate/Layout/_layout.html.twig' %}
 
+{% block header %}
+
+    {% include '@BlueDayTemplate/Modules/_header.html.twig' with { headerClass : 'home' } %}
+
+{% endblock header %}
+
 {% block content %}
 
 	{% include '@BlueDayTemplate/Modules/_product-list.html.twig' with {'products' : products} %}

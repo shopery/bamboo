@@ -12,7 +12,7 @@
             sPathJsLibs: "{{ asset('bundles/BlueDayTemplate/js/libs/') }}",
             sPathCss: "{{ asset('bundles/BlueDayTemplate/css/') }}",
             bCss: false,
-            bTrackModules: true,
+            bTrackModules: false,
             sHash:  '100',
             sDevice: 'desktop'
         }
@@ -33,7 +33,7 @@
             {% include "@BlueDayTemplate/Modules/_message-list.html.twig" %}
         {% endblock messages %}
 
-        <div class="grid">
+        <div id="container" class="grid">
             <div class="col-1-1">
                 {% block content %}{% endblock content %}
             </div>

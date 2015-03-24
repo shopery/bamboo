@@ -1,13 +1,3 @@
-<ul class="cart-nav">
-    <li>
-        <small>{{ 'template.store_template_bundle.cart.nav.amount'|trans }}</small>
-        <strong>{{ cart.amount|print_convert_money() }}</strong>
-    </li>
-    <li>
-        <small>{{ 'template.store_template_bundle.cart.nav.items'|trans }}</small>
-        <strong>{{ cart.totalItemNumber }}</strong>
-    </li>
-    <li>
-        <a href="{{ url('store_cart_view') }}" class="icon-shopping-cart icon-2x"></a>
-    </li>
-</ul>
+<a href="{{ url('store_cart_view') }}" data-fc-modules="minicart" class="cart-nav ph-m mb-n button{% if cart.totalItemNumber > 0 %}-ok{% else %}-secondary{% endif %}" title="{{ cart.amount|print_convert_money() }}">
+    <i class="icon-shopping-cart"></i> <span class="js-cart-items">{{ cart.totalItemNumber }}</span>
+</a>

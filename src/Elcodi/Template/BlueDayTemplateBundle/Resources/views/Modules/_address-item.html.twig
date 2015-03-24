@@ -16,7 +16,7 @@
                         >
                 <label for="billing-{{ address.id }}"></label>
             </div>
-            {{ 'template.store_template_bundle.address.item.billing'|trans }}
+            {{ 'template.BlueDay_bundle.address.item.billing'|trans }}
         </div>
         <div class="address-item-selection-item">
             <div class="switch">
@@ -33,28 +33,28 @@
                         >
                 <label for="delivery-{{ address.id }}"></label>
             </div>
-            {{ 'template.store_template_bundle.address.item.delivery'|trans }}
+            {{ 'template.BlueDay_bundle.address.item.delivery'|trans }}
         </div>
     </dd>
-    <dt>{{ 'template.store_template_bundle.address.item.address_name'|trans }}</dt>
+    <dt>{{ 'template.BlueDay_bundle.address.item.address_name'|trans }}</dt>
     <dd><strong>{{ address.name }}</strong></dd>
-    <dt>{{ 'template.store_template_bundle.address.item.fullname'|trans }}</dt>
+    <dt>{{ 'template.BlueDay_bundle.address.item.fullname'|trans }}</dt>
     <dd>{{ address.recipientName }} {{ address.recipientSurname }}</dd>
-    <dt>{{ 'template.store_template_bundle.address.item.address'|trans }}</dt>
+    <dt>{{ 'template.BlueDay_bundle.address.item.address'|trans }}</dt>
     <dd>{{ address.address }}<br/>{{ address.address_more }}</dd>
-    <dt>{{ 'template.store_template_bundle.address.item.phone_and_mobile'|trans }}</dt>
+    <dt>{{ 'template.BlueDay_bundle.address.item.phone_and_mobile'|trans }}</dt>
     <dd>{{ address.phone }} / {{ address.mobile }}</dd>
-    <dt>{{ 'template.store_template_bundle.address.item.city'|trans }}</dt>
+    <dt>{{ 'template.BlueDay_bundle.address.item.city'|trans }}</dt>
     <dd>{% for locationData in cities_info[address.city] %}{{ locationData.name }}, {% endfor %}</dd>
-    <dt>{{ 'template.store_template_bundle.address.item.postal_code'|trans }}</dt>
+    <dt>{{ 'template.BlueDay_bundle.address.item.postal_code'|trans }}</dt>
     <dd>{{ address.postalCode }}</dd>
-    <dt>{{ 'template.store_template_bundle.address.item.comment'|trans }}</dt>
+    <dt>{{ 'template.BlueDay_bundle.address.item.comment'|trans }}</dt>
     <dd>{{ address.comments|default('-') }}</dd>
-    <dt class="address-item-actions">{{ 'template.store_template_bundle.address.item.actions'|trans }}</dt>
+    <dt class="address-item-actions">{{ 'template.BlueDay_bundle.address.item.actions'|trans }}</dt>
     <dd class="address-item-actions">
         <a href="{{ url('store_address_edit',{id:address.id,source:source}) }}" class="button button-primary"><i
-                    class="icon-pencil"></i> {{ 'template.store_template_bundle.address.item.edit'|trans }}</a>
+                    class="icon-pencil"></i> {{ 'template.BlueDay_bundle.address.item.edit'|trans }}</a>
         <a href="{{ url('store_address_delete',{id:address.id,source:source}) }}" class="button button-ko"><i
-                    class="icon-trash-o"></i> {{ 'template.store_template_bundle.address.item.remove'|trans }}</a>
+                    class="icon-trash-o"></i> {{ 'template.BlueDay_bundle.address.item.remove'|trans }}</a>
     </dd>
 </dl>

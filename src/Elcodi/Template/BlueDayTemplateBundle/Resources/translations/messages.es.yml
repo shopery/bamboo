@@ -1,5 +1,5 @@
 template:
-    store_template_bundle:
+    BlueDay_bundle:
         address:
             item:
                 billing: Facturación
@@ -46,7 +46,7 @@ template:
         blog:
             post:
                 view:
-                    last_post: Último post
+                    last_post: Últimos artículos
                     read_more: Lee más
                 list:
                     blog_posts: Artículos
@@ -153,6 +153,7 @@ template:
             list:
                 no_products_in_category: Lo sentimos pero no tenemos ningún producto para esta categoría
             view_item:
+                from : Desde
                 product: Producto
                 offer: Oferta
                 add_to_cart: Añadir

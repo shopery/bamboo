@@ -1,19 +1,11 @@
-<ul class="user-nav">
-    {% if customer.id %}
-        <li>
-            <a href="{{ url("store_user") }}">
-                <strong>{{ customer.firstname }}</strong>
-            </a>
-        </li>
-        <li>
-            <a href="{{ url("store_logout") }}"><i class="icon-sign-out"></i> {{ "template.store_template_bundle.user.nav.logout"|trans }}</a>
-        </li>
-    {% else %}
-        <li>
-            <a href="{{ url("store_login") }}"><i class="icon-sign-in"></i> {{ "template.store_template_bundle.user.nav.login"|trans }}</a>
-        </li>
-        <li>
-            <a href="{{ url("store_register") }}"><strong><i class="icon-user"></i> {{ "template.store_template_bundle.user.nav.create_new_account"|trans }}</strong></a>
-        </li>
-    {% endif %}
-</ul>
+{% if customer.id %}
+    <a href="{{ url("store_user") }}" class="button-secondary mb-n">
+        <i class="icon-user"></i>
+        <strong>{{ customer.firstname }}</strong>
+    </a>
+    <a href="{{ url("store_logout") }}"><i class="icon-sign-out"></i></a>
+{% else %}
+    <a href="{{ url("store_login") }}" class="button-secondary mb-n">
+        <i class="icon-sign-in"></i> {{ "template.BlueDay_bundle.user.nav.login"|trans }}
+    </a>
+{% endif %}

@@ -1,18 +1,28 @@
-<header class="header">
-    {% render url('store_currency_nav') %}
-    <div class="grid">
-        <div class="col-1-2">
-            <a href="{{ url('store_homepage') }}" class="logo">
-                {{ elcodi_config('store.name') }}
-            </a>
-        </div>
-        <div class="col-1-2">
+<header class="header {{ headerClass }}" style="background-image:url('http://www.brcbikes.com/img/slide-5.jpg')">
+    <div class="box-background mb-n">
+        <a data-fc-modules="side-panel" data-fc-clone="true" data-fc-close="false" href="#mobile-nav" class="button-secondary mobile fl-l ph-m mb-n"><i class="icon-align-justify"></i></a>
+        <div class="buttons-group fl-r">
             {% render url('store_user_nav') %}
             {% render url('store_cart_nav') %}
         </div>
+        <div class="grid">
+            <a href="{{ url('store_homepage') }}" class="logo">
+                {{ elcodi_config('store.name') }}
+            </a>
+
+        </div>
     </div>
-</header>
-<div class="grid desktop">
+    <div class="grid">
+        <div class="col-1-1">
+            <p class="fz-h1">
+                {{ elcodi_config('store.leitmotiv') }}
+            </p>
+        </div>
+    </div>
     {% render url('store_categories_nav') %}
+</header>
+<div class="d-n">
+
+
+    {% render url('store_currency_nav') %}
 </div>
-<a href="#mobile-menu" class="button mobile"><i class="icon-arrow-down"></i> {{ 'template.store_template_bundle.header.menu'|trans }}</a>

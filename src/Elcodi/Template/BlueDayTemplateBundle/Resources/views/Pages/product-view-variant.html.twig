@@ -7,45 +7,89 @@
  # The product_info_details should now display a form
  # to select the product variant
  #}
-{% block product_info_add_basket %}
-<div class= "product-to-basket-group">
-{% for variant in product.variants %}
-    <div class= "product-to-basket">
-        {% set variant_price = variant.reducedPrice.amount > 0 ? variant.reducedPrice : variant.price %}
-            {% if variant.images|length > 0  %}
-            <img hspace="10" src="{{ variant.images.first|resize({
-                'width': 300,
-                'height': 100,
-                'type': 5
-            }) }}" alt="{{ variant.name }}" />
-            {% else %}
-                <img src="{{ product.principalImage ? product.principalImage|resize({
-                    'width': 300,
-                    'height': 100,
-                    'type': 5
-                }) : 'http://placehold.it/60x47' }}" alt="{{ product.name }}" />
-            {% endif %}
 
-        <h5 class="product-title">{{ variant|purchasable_name }}</h5>
-        <p class="product-actions">
-            {% if product.reducedPrice.amount > 0 %}
-                <span class="product-pricing product-pricing-before">{{ variant.price|print_convert_money() }}</span>
-                <span class="product-pricing product-pricing-now">{{ variant.reducedPrice|print_convert_money() }}</span>
+            {% block product_image %}
+
+                {% if product.variants.0.images|length > 0  %}
+                    {% set variantImage = product.variants.0.images.first|resize({'width': 772,'height': 604,'type': 5})  %}
+                    {% set variantImageHref = product.variants.0.images.first|resize({'width': 1024,'height': 1024,'type': 2})  %}
+                {% else %}
+                    {% set variantImage = product.principalImage|resize({'width': 772,'height': 604,'type': 5})  %}
+                    {% set variantImageHref = product.principalImage|resize({'width': 1024,'height': 1024,'type': 2})  %}
+                {% endif %}
+
+                {% if variantImage != '' %}
+
+                <a data-product="{{ product.id }}"
+                   data-attribute="img-href"
+                   href="{{ variantImageHref }}" alt="{{ product.name }}" class="product-thumbnail">
+                    {% if product.reducedPrice.amount > 0 %}<span class="product-badge">{{ 'template.BlueDay_bundle.product.view_item.offer'|trans }}</span> {% endif %}
+                    <img data-product="{{ product.id }}"
+                         data-attribute="img"
+                         src="{{ variantImage }}" alt="{{ product.name }}"/>
+                </a>
+                {% endif %}
+            {% endblock %}
+
+{% block product_info_add_basket %}
+    <form class="form mb-l" data-fc-modules="variant">
+        <p>
+            {% if product.variants.0.reducedPrice.amount > 0 %}
+                <span class="product-pricing product-pricing-before">{{ product.variants.0.price|print_convert_money() }}</span>
+                <span class="product-pricing product-pricing-now">{{ product.variants.0.reducedPrice|print_convert_money() }}</span>
             {% else %}
-                <span class="product-pricing">{{ variant.price|print_convert_money() }}</span>
-            {% endif %}
-            {% if not useStock or variant.stock > 0 %}
-            <a title="{{ 'template.store_template_bundle.product.view_item.add_to_cart'|trans }}"
-               class="icon-shopping-cart button button-secondary"
-               href="{{ url('store_cart_add_product_variant', { id: variant.id }) }}"> {{ 'template.store_template_bundle.product.view_item.add_to_cart'|trans }}</a>
-            {% else %}
-                <a title="{{ 'template.store_template_bundle.product.view_item.no_stock'|trans }}"
-                   class="icon-times button button"
-                   href="#"> {{ 'template.store_template_bundle.product.view_item.no_stock'|trans }}</a>
+                <span data-product="{{ product.id }}" data-attribute="price" class="fz-h1">{{ product.variants.0.price|print_convert_money() }}</span>
             {% endif %}
         </p>
-    </div>
+        <select class="js-product-variants" data-product="{{ product.id }}">
+            {% for variant in product.variants %}
+                {% spaceless %}
 
-{% endfor %}
-</div>
-{% endblock %}
+                {% set variantPrice = variant.reducedPrice.amount > 0 ? variant.reducedPrice : variant.price %}
+
+                {% if variant.images|length > 0  %}
+                    {% set variantImage = variant.images.first|resize({'width': 772,'height': 604,'type': 5})  %}
+                    {% set variantImageHref = variant.images.first|resize({'width': 1024,'height': 1024,'type': 2})  %}
+                {% else %}
+                    {% set variantImage = product.principalImage|resize({'width': 772,'height': 604,'type': 5})  %}
+                    {% set variantImageHref = product.principalImage|resize({'width': 1024,'height': 1024,'type': 2})  %}
+                {% endif %}
+
+                {% if not useStock %}
+                    {% set variantStock = true %}
+                {% elseif useStock and variant.stock > 0 %}
+                    {% set variantStock = variant.stock %}
+                {% else %}
+                    {% set variantStock = false %}
+                {% endif %}
+
+            {% endspaceless %}
+                <option value="{{ url('store_cart_add_product_variant', { id: variant.id }) }}"
+                    data-variant-image="{{ variantImage }}"
+                    data-variant-image-href="{{ variantImageHref }}"
+                    data-variant-price="{{ variantPrice|print_convert_money() }}"
+                    data-variant-name="{{ variant|purchasable_name }}"
+                    data-variant-stock="{{ variantStock }}"
+                >{{ variant|purchasable_name }}
+                </option>
+            {% endfor %}
+        </select>
+    </form>
+        <form data-product="{{ product.id }}" data-attribute="add-to-cart" class="form mb-l {% if elcodi_config('product.use_stock') == true and product.variants.0.stock < 1 %}d-n{% endif %}" data-fc-modules="add-to-cart">
+            <select class="w-20 fl-l mr-l">
+                {% for value in 1..20  %}
+                    <option value="{{ value }}">{{ value }}</option>
+                {% endfor %}
+            </select>
+            <a title="{{ 'template.BlueDay_bundle.product.view_item.add_to_cart'|trans }}"
+               class="icon-shopping-cart button button-secondary pv-m js-add-to-cart-button"
+               href="{{ url('store_cart_add_product', { id: product.variants.0.id }) }}"
+               data-product="{{ product.id }}"
+               data-attribute="href"> {{ 'template.BlueDay_bundle.product.view_item.add_to_cart'|trans }}
+            </a>
+        </form>
+        <a title="{{ 'template.BlueDay_bundle.product.view_item.no_stock'|trans }}"
+           data-product="{{ product.id }}" data-attribute="no-stock"
+           class="icon-times button mb-l {% if elcodi_config('product.use_stock') != true or ( elcodi_config('product.use_stock') == true and product.variants.0.stock > 0 ) %}d-n{% endif %}"
+           href="#"> {{ 'template.BlueDay_bundle.product.view_item.no_stock'|trans }}</a>
+{% endblock product_info_add_basket %}

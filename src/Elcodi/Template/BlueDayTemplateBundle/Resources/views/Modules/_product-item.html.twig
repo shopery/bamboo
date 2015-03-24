@@ -1,58 +1,45 @@
 {#
  # Base display block for a Product with no variants in listing page.
  #}
-<div class="product-item">
-
-    {{ elcodi_hook("store.product_pin_top", {
-        'product': product
-    }) }}
+<article class="ta-c mb-xl">
 
     {% set productRoute = url('store_product_view', { 'slug': product.slug, 'id': product.id }) %}
 
-    {% block pin_title %}
-    <h4 class="product-title">
-        <a href="{{ productRoute }}">{{ product.name }}</a>
-    </h4>
-    {% endblock %}
-
     {% block pin_image %}
-        <a href="{{ productRoute }}" class="product-thumbnail">
-            {% if product.reducedPrice.amount > 0 %}<span class="product-badge">{{ 'template.store_template_bundle.product.item.offer'|trans }}</span> {% endif %}
-            <img class="image" src="{{ product.images|length > 0 ? product.images.first|resize({
-                'width': 372,
-                'height': 291,
+        <a href="{{ productRoute }}" class="thumbnail mb-m">
+            {% if product.reducedPrice.amount > 0 %}<span class="product-badge">{{ 'template.BlueDay_bundle.product.item.offer'|trans }}</span> {% endif %}
+            <img src="{{ product.images|length > 0 ? product.images.first|resize({
+                'width': 500,
+                'height': 300,
                 'type': 5
             }) : 'http://placehold.it/372x291' }}" alt="{{ product.name }}" />
         </a>
     {% endblock %}
-    <p class="product-actions">
-        {% block pin_button_view %}
-            <a class="icon-eye button button"
-               title="View details for {{ product.name }}"
-               href="{{ productRoute }}"></a>
-        {% endblock %}
-        {% if product.reducedPrice.amount > 0 %}
-        <span class="product-pricing product-pricing-before">{{ product.price|print_convert_money() }}</span>
-        <span class="product-pricing product-pricing-now">{{ product.reducedPrice|print_convert_money() }}</span>
-        {% else %}
-        <span class="product-pricing">{{ product.price|print_convert_money() }}</span>
-        {% endif %}
-        {% if product.hasVariants() %}
-            <a class="icon-list button button-secondary"
-               title="Choose a model of {{ product.name }}"
-               href="{{ url('store_product_view', {
-                   'slug': product.slug,
-                   'id': product.id
-               }) }}#variant-add-to-cart"></a>
-        {% else %}
-            <a class="icon-shopping-cart button button-secondary"
-               href="{{ url('store_cart_add_product', { id: product.id }) }}"
-               title="Add to cart {{ product.name }}"></a>
-        {% endif %}
 
+    {% block pin_title %}
+    <h4 class="mb-n"><a href="{{ productRoute }}">{{ product.name }}</a></h4>
+    {% endblock %}
+
+    <p class="mb-n" {% if product.variants|length == 0 %}data-fc-modules="add-to-cart" {% endif %}>
+
+        {% if product.variants|length > 0 %}
+            <a title="Choose a model of {{ product.name }}" data-fc-modules="modal" href="{{ url('store_product_view', { 'slug': product.slug, 'id': product.id }) }}#product">
+                {{ 'template.BlueDay_bundle.product.view_item.from'|trans }}
+        {% else %}
+            <a href="{{ url('store_cart_add_product', { id: product.id }) }}"  title="Add to cart {{ product.name }}" class="js-add-to-cart-button">
+        {% endif %}
+                {% if product.reducedPrice.amount > 0 %}
+                    <span class="product-pricing product-pricing-before">{{ product.price|print_convert_money() }}</span>
+                    <span class="product-pricing product-pricing-now">{{ product.reducedPrice|print_convert_money() }}</span>
+                {% else %}
+                    <span class="product-pricing">{{ product.price|print_convert_money() }}</span>
+                {% endif %}
+                <i class="icon-shopping-cart"></i>
+            </a>
     </p>
+    <p><a href="{{ url('store_category_products_list', { slug: product.principalCategory.slug, id: product.principalCategory.id }) }}">{{ product.principalCategory }}</a></p>
 
     {{ elcodi_hook("store.product_pin_bottom", {
         'product': product
     }) }}
-</div>
+</article>
