@@ -1,6 +1,6 @@
 FrontendCore.define('modal-content', ['devicePackage','modal' ], function () {
 	return {
-		oModal:  TinyCore.Module.instantiate( 'modal' ),
+		oModal:  FrontendCore.instantiate( 'modal' ),
 		mediator : FrontendMediator,
 		onStart: function () {
 

@@ -13,11 +13,9 @@
             sPathCss: "{{ asset('bundles/BlueDayTemplate/css/') }}",
             bCss: false,
             bTrackModules: false,
-            sHash:  '100',
-            sDevice: 'desktop'
+            sHash:  '100'
         }
     </script>
-    <script type="text/javascript" src="{{ asset('bundles/BlueDayTemplate/js/core.js') }}" ></script>
 {% endblock head_style %}
 
 {% block body %}
@@ -47,3 +45,7 @@
 
     {% endblock container %}
 {% endblock body %}
+
+{% block foot_script %}
+    <script  type="text/javascript" src="{{ asset('bundles/BlueDayTemplate/js/core.js') }}" ></script>
+{% endblock foot_script %}
