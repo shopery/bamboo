@@ -20,7 +20,7 @@
     <h4 class="mb-n"><a href="{{ productRoute }}">{{ product.name }}</a></h4>
     {% endblock %}
 
-    <p class="mb-n" {% if product.variants|length == 0 %}data-fc-modules="add-to-cart" {% endif %}>
+    <p class="mb-n">
 
         {% if product.variants|length > 0 %}
             <a title="Choose a model of {{ product.name }}" data-fc-modules="modal" href="{{ url('store_product_view', { 'slug': product.slug, 'id': product.id }) }}#product">

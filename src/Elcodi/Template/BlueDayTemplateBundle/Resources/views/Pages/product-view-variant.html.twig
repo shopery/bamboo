@@ -32,7 +32,7 @@
             {% endblock %}
 
 {% block product_info_add_basket %}
-    <form class="form mb-l" data-fc-modules="variant">
+    <form data-product="{{ product.id }}" data-attribute="variant" class="form mb-l" data-fc-modules="variant">
         <p>
             {% if product.variants.0.reducedPrice.amount > 0 %}
                 <span class="product-pricing product-pricing-before">{{ product.variants.0.price|print_convert_money() }}</span>
@@ -75,7 +75,7 @@
             {% endfor %}
         </select>
     </form>
-        <form data-product="{{ product.id }}" data-attribute="add-to-cart" class="form mb-l {% if elcodi_config('product.use_stock') == true and product.variants.0.stock < 1 %}d-n{% endif %}" data-fc-modules="add-to-cart">
+        <form data-product="{{ product.id }}" data-attribute="add-to-cart" class="form mb-l {% if elcodi_config('product.use_stock') == true and product.variants.0.stock < 1 %}d-n{% endif %}">
             <select class="w-20 fl-l mr-l">
                 {% for value in 1..20  %}
                     <option value="{{ value }}">{{ value }}</option>
