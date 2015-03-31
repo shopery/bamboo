@@ -1,23 +1,7 @@
 {% extends '::_base.html.twig' %}
 
 {% block head_style %}
-    <link rel="stylesheet" type="text/css" media="all" href="{{ asset('bundles/BlueDayTemplate/css/main.css') }}" />
-    <script type="text/javascript">
-        var oGlobalSettings = {
-            sPathJs: "{{ asset('bundles/BlueDayTemplate/js/') }}",
-            sPathJsModules: "{{ asset('bundles/BlueDayTemplate/js/modules/') }}",
-            sPathJsTwig: "{{ asset('bundles/BlueDayTemplate/twig/') }}",
-            sPathJsComponents: "{{ asset('bundles/BlueDayTemplate/js/') }}",
-            sPathJsCore: "{{ asset('bundles/BlueDayTemplate/js/') }}",
-            sPathJsLibs: "{{ asset('bundles/BlueDayTemplate/js/libs/') }}",
-            sPathCss: "{{ asset('bundles/BlueDayTemplate/css/') }}",
-            bCss: false,
-            bTrackModules: false,
-            sHash:  '100',
-            sDevice: 'desktop'
-        }
-    </script>
-    <script type="text/javascript" src="{{ asset('bundles/BlueDayTemplate/js/core.js') }}" ></script>
+
 {% endblock head_style %}
 
 {% block body %}
@@ -50,5 +34,21 @@
 
 {% block foot_script %}
     <span data-fc-modules="event-listener"></span>
-    <script  type="text/javascript" src="{{ asset('bundles/BlueDayTemplate/js/core.js') }}" ></script>
+    <link rel="stylesheet" type="text/css" media="all" href="{{ asset('bundles/BlueDayTemplate/css/main.css') }}" />
+    <script type="text/javascript">
+        var oGlobalSettings = {
+            sPathJs: "{{ asset('bundles/BlueDayTemplate/js/') }}",
+            sPathJsModules: "{{ asset('bundles/BlueDayTemplate/js/modules/') }}",
+            sPathJsTwig: "{{ asset('bundles/BlueDayTemplate/twig/') }}",
+            sPathJsComponents: "{{ asset('bundles/BlueDayTemplate/js/') }}",
+            sPathJsCore: "{{ asset('bundles/BlueDayTemplate/js/') }}",
+            sPathJsLibs: "{{ asset('bundles/BlueDayTemplate/js/libs/') }}",
+            sPathCss: "{{ asset('bundles/BlueDayTemplate/css/') }}",
+            bCss: false,
+            bTrackModules: false,
+            sHash:  '100',
+            sDevice: 'desktop'
+        }
+    </script>
+    <script type="text/javascript" src="{{ asset('bundles/BlueDayTemplate/js/core.js') }}" ></script>
 {% endblock foot_script %}

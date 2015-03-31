@@ -2,8 +2,7 @@
     <a href="{{ url("store_user") }}" class="button-secondary mb-n">
         <i class="icon-user"></i>
         <strong>{{ customer.firstname }}</strong>
-    </a>
-    <a href="{{ url("store_logout") }}"><i class="icon-sign-out"></i></a>
+    </a><a href="{{ url("store_logout") }}" class="button-secondary mb-n ph-m"><i class="icon-times"></i></a>
 {% else %}
     <a href="{{ url("store_login") }}" class="button-secondary mb-n">
         <i class="icon-sign-in"></i> {{ "template.BlueDay_bundle.user.nav.login"|trans }}
